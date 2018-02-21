@@ -63,7 +63,7 @@
 <script>
 import myheader from '@/components/header/myheader'
 export default {
-   components: {
+  components: {
     myheader
   }
 }

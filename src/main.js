@@ -8,7 +8,9 @@ import 'font-awesome/css/font-awesome.css'
 // 引入mint-ui
 import MintUi from 'mint-ui'
 import 'mint-ui/lib/style.css'
-
+// 引入axios
+import axios from 'axios'
+Vue.prototype.axios = axios
 Vue.use(MintUi)
 Vue.config.productionTip = false
 

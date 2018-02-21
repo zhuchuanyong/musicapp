@@ -15,6 +15,20 @@ import mymusic from '@/components/mymusic/mymusic'
 import friend from '@/components/friend/friend'
 // 用户
 import user from '@/components/user/user'
+// 歌手页面
+import sings from '@/components/sings/sings'
+// 歌手hot页面
+import hot from '@/components/sings/hot'
+// 歌手专辑页面
+import special from '@/components/sings/special'
+// 歌手MV页面
+import singsmv from '@/components/sings/singsmv'
+// 歌手信息页面
+import singinfo from '@/components/sings/singinfo'
+// 歌单详情页面
+import singsonglist from '@/components/playsong/singsonglist'
+//  播放页面
+import playpage from '@/components/playsong/play'
 Vue.use(Router)
 
 export default new Router({
@@ -30,19 +44,19 @@ export default new Router({
         //   component: recommend
         // },
         {
-          path: 'recommend',
+          path: '/recommend',
           component: recommend
         },
         {
-          path: 'songlist',
+          path: '/songlist',
           component: songlist
         },
         {
-          path: 'anchorStation',
+          path: '/anchorStation',
           component: anchorStation
         },
         {
-          path: 'rank',
+          path: '/rank',
           component: rank
         }
       ]
@@ -58,6 +72,37 @@ export default new Router({
     {
       path: '/user',
       component: user
+    },
+    {
+      path: '/sings',
+      component: sings,
+      redirect: 'hot',
+      children: [
+        {
+          path: '/hot',
+          component: hot
+        },
+        {
+          path: '/special',
+          component: special
+        },
+        {
+          path: '/singsmv',
+          component: singsmv
+        },
+        {
+          path: '/singinfo',
+          component: singinfo
+        }
+      ]
+    },
+    {
+      path: '/singsonglist',
+      component: singsonglist
+    },
+    {
+      path: '/playpage',
+      component: playpage
     }
   ]
 })

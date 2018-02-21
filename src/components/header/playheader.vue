@@ -1,10 +1,10 @@
 <template>
    <mt-header fixed :title="title" class="header">
-      <mt-button slot="left" class="left">
-        <i class="fa fa-microphone"></i>
+      <mt-button slot="left" class="left" v-on:click="back">
+        <i class="fa fa-arrow-left"></i>
       </mt-button>
-      <mt-button slot="right" class="right" v-on:click="toTarget">
-        <i class="fa fa-align-left fa-rotate-270"></i>
+      <mt-button slot="right" class="right">
+        <i class="fa fa-share"></i>
       </mt-button>
     </mt-header>
 </template>
@@ -12,8 +12,8 @@
 export default {
   props: ['title'],
   methods: {
-    toTarget () {
-      this.$router.push('playpage')
+    back () {
+      this.$router.go(-1)
     }
   }
 }

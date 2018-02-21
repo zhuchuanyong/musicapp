@@ -15,12 +15,22 @@
     </div>
     <!-- 播放页面跳转链接按钮 -->
     <div class="player">
-      <div class="img">
+      <div class="img" v-on:click="toTarget">
         <i class="fa fa-align-left fa-rotate-270"></i>
       </div>
     </div>
   </div>
 </template>
+<script>
+export default {
+  methods: {
+    toTarget () {
+      this.$router.push('playpage')
+    }
+  }
+}
+</script>
+
 <style lang="less" scoped>
 @import "../../assets/css/minxin.less";
 @import "../../assets/css/variable.less";
