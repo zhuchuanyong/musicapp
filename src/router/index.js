@@ -9,6 +9,12 @@ import songlist from '@/components/content/songlist/songlist'
 import anchorStation from '@/components/content/anchorStation/anchorStation'
 // 排行榜
 import rank from '@/components/content/rank/rank'
+// 我的音乐
+import mymusic from '@/components/mymusic/mymusic'
+// 朋友
+import friend from '@/components/friend/friend'
+// 用户
+import user from '@/components/user/user'
 Vue.use(Router)
 
 export default new Router({
@@ -40,6 +46,18 @@ export default new Router({
           component: rank
         }
       ]
+    },
+    {
+      path: '/mymusic',
+      component: mymusic
+    },
+    {
+      path: '/friend',
+      component: friend
+    },
+    {
+      path: '/user',
+      component: user
     }
   ]
 })

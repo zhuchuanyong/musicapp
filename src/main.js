@@ -5,7 +5,11 @@ import App from './App'
 import router from './router'
 // 引入字体图标
 import 'font-awesome/css/font-awesome.css'
+// 引入mint-ui
+import MintUi from 'mint-ui'
+import 'mint-ui/lib/style.css'
 
+Vue.use(MintUi)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

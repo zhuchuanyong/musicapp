@@ -25,7 +25,7 @@
 @import "../../assets/css/minxin.less";
 @import "../../assets/css/variable.less";
 .header {
-  height: 0.44rem;
+  // height: 0.44rem;
   height: 44px;
   display: flex;
   background-color: @backgroundred;

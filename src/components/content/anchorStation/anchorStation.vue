@@ -29,10 +29,21 @@
           <!-- 电台简介 -->
           <div class="brief">
             <p>程碧程碧程碧程碧程碧程碧程碧程碧程碧程碧</p>
-            
           </div>
         </li>
         <li></li>
+        <li>
+          <div class="img">
+            <img src="" alt="">
+            <div class="fmname">
+              <p>dlkgjkfdnhn</p>
+            </div>
+          </div>
+          <!-- 电台简介 -->
+          <div class="brief">
+            <p>程碧程碧程碧程碧程碧程碧程碧程碧程碧程碧</p>
+          </div>
+        </li>
         <li></li>
       </ul>
     </div>
@@ -53,7 +64,6 @@
           <!-- 电台简介 -->
           <div class="brief">
             <p>程碧程碧程碧程碧程碧程碧程碧程碧程碧程碧</p>
-            
           </div>
         </li>
         <li></li>
@@ -97,6 +107,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   li {
     height: 160px;
     width: 33%;

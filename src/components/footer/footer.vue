@@ -1,23 +1,28 @@
 <template>
  <div class="footer">
    <div class="findmusic">
-     <!-- <div class="fa-stack"> -->
+    <router-link to="recommend" active-class="liactive" tag="div" >
       <i class="fa fa-clone"></i>
-      <!-- <i class="fa fa-music fa-stack-1x"></i> -->
-     <!-- </div> -->
-     <span>发现音乐</span>
+      <span>发现音乐</span>
+    </router-link>
    </div>
    <div class="mymusic">
-     <i class="fa fa-music"></i>
-     <span>我的音乐</span>
+      <router-link to="mymusic" active-class="liactive" tag="div" >
+        <i class="fa fa-music"></i>
+        <span>我的音乐</span>
+      </router-link>
    </div>
    <div class="friend">
-     <i class="fa fa-venus-mars"></i>
-     <span>朋友</span>
+     <router-link to="friend" active-class="liactive" tag="div" >
+        <i class="fa fa-venus-mars"></i>
+        <span>朋友</span>
+      </router-link>
    </div>
    <div class="user">
-     <i class="fa fa-user"></i>
-     <span>帐号</span>
+     <router-link to="user" active-class="liactive" tag="div" >
+        <i class="fa fa-user"></i>
+        <span>我</span>
+      </router-link>
    </div>
  </div>
 </template>
@@ -47,5 +52,8 @@
       font-size: 14px;
     }
   }
+}
+.liactive {
+  color: #c20c0c;
 }
 </style>
