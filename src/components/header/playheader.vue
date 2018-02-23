@@ -1,5 +1,5 @@
 <template>
-   <mt-header fixed :title="title" class="header">
+   <mt-header fixed :title='title' class="header">
       <mt-button slot="left" class="left" v-on:click="back">
         <i class="fa fa-arrow-left"></i>
       </mt-button>

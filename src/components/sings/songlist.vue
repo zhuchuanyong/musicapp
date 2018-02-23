@@ -8,7 +8,7 @@
     </div>
     <div class="info">
      <p>{{infodata.name}}</p>
-     <span>{{infodata.title}}</span>
+     <span>{{infodata.ar[0].name}}</span>
     </div>
   </div>
 </template>

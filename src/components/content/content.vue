@@ -2,7 +2,9 @@
   <div class="content">
     <m-header></m-header>
     <titlenav></titlenav>
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 <script>

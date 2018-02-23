@@ -13,7 +13,7 @@ export default {
   props: ['title'],
   methods: {
     toTarget () {
-      this.$router.push('playpage')
+      this.$router.push('/playpage')
     }
   }
 }

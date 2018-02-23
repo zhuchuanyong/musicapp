@@ -97,8 +97,9 @@ export default new Router({
       ]
     },
     {
-      path: '/singsonglist',
-      component: singsonglist
+      path: '/singsonglist/:id',
+      component: singsonglist,
+      name: 'singsonglist'
     },
     {
       path: '/playpage',

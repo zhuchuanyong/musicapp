@@ -1,15 +1,15 @@
 <template>
-  <div class="songlist">
+  <div class="songlist scroll">
     <!-- 头部精品歌单 -->
-   <div class="title">
-     <div class="img"></div>
+   <!-- <div class="title">
+     <div class="img"></div> -->
      <!-- 歌单介绍 -->
-     <div class="introduce">
+     <!-- <div class="introduce">
       <h3>精品歌单 <i class="fa fa-angle-right"></i></h3>
       <p>中国传统节日</p>
       <span>一起领略最美的东方韵律吧</span>
-     </div>
-   </div>
+     </div> -->
+   <!-- </div> -->
    <!-- 全部歌单 -->
    <div class="allsonglist">
      <div class="alllist">
@@ -24,31 +24,65 @@
     <!-- 歌单列表 -->
    <div class="list">
      <ul>
-       <li>
+       <li v-for="item in songlist" :key="item.id" @click="tosonglist(item.id)">
          <div class="img">
-          <img src="" alt="">
+          <img :src="item.coverImgUrl" alt="">
           <!-- 歌单收藏数目 -->
           <div class="num">
             <i class="fa fa-headphones"></i>
-            <span>207万</span>
+            <span>{{item.playCount}}</span>
           </div>
           <!-- 用户 歌单创建者 -->
           <div class="user">
-            <i class="fa fa-male"></i> <span>谁谁</span>
+            <i class="fa fa-male"></i> <span>{{item.creator.nickname}}</span>
           </div>
          </div>
          <!-- 歌单简介 -->
          <div class="listbrief">
-           <p>华语/白首写给前任的歌,让你百感交集你百感交集你百感交集你百感交集交集你交集你</p>
+           <p>{{item.name}}</p>
          </div>
        </li>
-       <li></li>
      </ul>
    </div>
   </div>
 </template>
+<script>
+export default {
+  data () {
+    return {
+      songlist: []
+    }
+  },
+  created () {
+    let that = this
+    this.axios.get('http://apimusic.zhuchuanyong.com/top/playlist?limit=30&order=hot').then(function (res) {
+      // console.log(res)
+      that.songlist = res.data.playlists
+      console.log(that.songlist)
+    })
+  },
+  methods: {
+    tosonglist (id) {
+      this.$router.push({
+        name: 'singsonglist',
+        params: {
+          id: id
+        }
+      })
+    }
+  }
+}
+</script>
+
 <style lang="less" scoped>
 @import "../../../assets/css/variable.less";
+.scroll {
+  position: relative;;
+  overflow: hidden;
+  overflow-y: scroll;
+  padding-bottom: 50px;
+  height: 700px;
+}
 .title {
   display: flex;
   padding: 15px 0;
@@ -109,20 +143,28 @@
       // flex-grow: 1;
       width: 49%;
       height: 200px;
-      background-color: green;
+      // background-color: green;
     }
   }
   li {
     .img {
       height: 150px;
-      background-color: red;
+      // background-color: red;
       position: relative;
+      img {
+      width: 100%;
+      height: 100%;
+      }
     }
     .num {
       height: 25px;
-      width: 0.6rem;
-      background-color: pink;
-      float: right;
+      width: 0.7rem;
+      position: absolute;
+      right: 0;
+      // background-color: pink;
+      // float: right;
+      top: 0;
+      text-align: right;
       line-height: 25px;
       color: @fontawesome;
     }

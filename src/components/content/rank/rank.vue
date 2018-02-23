@@ -1,5 +1,5 @@
 <template>
-  <div class="rank">
+  <div class="rank scroll">
     <!-- 官方榜 -->
     <div class="official">
       <div class="title">
@@ -7,20 +7,15 @@
       </div>
       <div class="officiallist">
         <ul>
-          <li>
-            <div class="img"></div>
-            <div class="songlist">
-              <p>1. 动物世界-薛之谦薛薛薛薛</p>
-              <p>2. 动物世界-薛之薛 -薛之薛-薛之薛-薛之薛</p>
-              <p>3. 动物世界-薛之谦jsgjkdj哈哈ldfglkfdkll哈哈</p>
+          <li v-for="item in officialrank" :key="item.data.playlist.id" @click="tosonglist(item.data.playlist.id)">
+            <div class="img">
+              <img :src="item.data.playlist.coverImgUrl" alt="">
             </div>
-          </li>
-          <li>
-            <div class="img"></div>
             <div class="songlist">
-              <p>1. 动物世界-薛之谦薛薛薛薛</p>
-              <p>2. 动物世界-薛之薛 -薛之薛-薛之薛-薛之薛</p>
-              <p>3. 动物世界-薛之谦jsgjkdj哈哈ldfglkfdkll哈哈</p>
+              <!-- <p v-for="itemsong in item.data.playlist.tracks" :key="itemsong.id">111</p> -->
+              <p>1. {{item.data.playlist.tracks[0].name}}-{{item.data.playlist.tracks[0].ar[0].name}}</p>
+              <p>2. {{item.data.playlist.tracks[1].name}}-{{item.data.playlist.tracks[0].ar[0].name}}</p>
+              <p>3. {{item.data.playlist.tracks[2].name}}-{{item.data.playlist.tracks[0].ar[0].name}}</p>
             </div>
           </li>
         </ul>
@@ -32,71 +27,87 @@
         全球榜 <i class="fa fa-angle-right"></i>
       </div>
       <ul class="ranklist">
-        <li>
+        <li v-for="item in worldrank" :key="item.data.playlist.id" @click="tosonglist(item.data.playlist.id)">
           <div class="img">
-            <img src="" alt="">
+            <img :src="item.data.playlist.coverImgUrl" alt="">
             <div class="rankname">
               <p>每周五更新</p>
             </div>
           </div>
           <!-- 简介 -->
           <div class="brief">
-            <p>云音乐电音榜</p>
-          </div>
-        </li>
-        <li>
-          <div class="img">
-            <img src="" alt="">
-            <div class="rankname">
-              <p>每周五更新</p>
-            </div>
-          </div>
-          <!-- 简介 -->
-          <div class="brief">
-            <p>云音乐电音榜</p>
-          </div>
-        </li>
-        <li>
-          <div class="img">
-            <img src="" alt="">
-            <div class="rankname">
-              <p>每周五更新</p>
-            </div>
-          </div>
-          <!-- 简介 -->
-          <div class="brief">
-            <p>云音乐电音榜</p>
-          </div>
-        </li>
-        <li>
-          <div class="img">
-            <img src="" alt="">
-            <div class="rankname">
-              <p>每周五更新</p>
-            </div>
-          </div>
-          <!-- 简介 -->
-          <div class="brief">
-            <p>云音乐电音榜</p>
-          </div>
-        </li>
-        <li>
-          <div class="img">
-            <img src="" alt="">
-            <div class="rankname">
-              <p>每周五更新</p>
-            </div>
-          </div>
-          <!-- 简介 -->
-          <div class="brief">
-            <p>云音乐电音榜</p>
+            <p>{{item.data.playlist.name}}</p>
           </div>
         </li>
       </ul>
     </div>
   </div>
 </template>
+<script>
+export default {
+  data () {
+    return {
+      officialrank: [],
+      worldrank: []
+    }
+  },
+  methods: {
+    tosonglist (id) {
+      this.$router.push({
+        name: 'singsonglist',
+        params: {
+          id: id
+        }
+      })
+    }
+  },
+  created () {
+    let that = this
+    this.axios.all([
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=0'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=1'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=2'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=3'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=4'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=22'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=23')
+    ]).then(that.axios.spread(function (...map) {
+      that.officialrank.push(...map)
+      console.log(that.officialrank)
+    }))
+    this.axios.all([
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=5'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=6'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=7'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=8'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=9'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=10'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=12'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=13'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=14'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=15'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=16'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=17'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=18'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=19'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=20'),
+      that.axios.get('http://apimusic.zhuchuanyong.com/top/list?idx=21')
+    ]).then(that.axios.spread(function (...map) {
+      that.worldrank.push(...map)
+      console.log(that.worldrank)
+    }))
+  }
+}
+</script>
+
 <style lang="less" scoped>
+.scroll {
+  position: relative;;
+  overflow: hidden;
+  overflow-y: scroll;
+  padding-bottom: 50px;
+  height: 700px;
+}
 .title {
   border-top: 1px solid #cccccc;
   height: 40px;
@@ -109,7 +120,7 @@
 .officiallist {
   li {
     height: 95px;
-    background-color: yellow;
+    // background-color: yellow;
     display: flex;
     margin-bottom: 5px;
     .img {
@@ -118,7 +129,11 @@
       // flex-grow: 0;
       width: 0.95rem;
       // width: 95px;
-      background-color: red;
+      // background-color: red;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
     .songlist {
       padding: 10px .1rem;
@@ -150,12 +165,16 @@
   li {
     height: 160px;
     width: 33%;
-    background-color: red;
+    // background-color: red;
   }
   .img {
     height: 120px;
     position: relative;
-    background-color: green;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    // background-color: green;
     .rankname {
       position: absolute;
       bottom: 2px;

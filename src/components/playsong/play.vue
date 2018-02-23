@@ -1,8 +1,9 @@
 <template>
   <div class="play">
-    <playheader title="十年--陈奕迅"></playheader>
+    <playheader :title='songinfo.name'></playheader>
     <div class="top">
       <div class="img">
+        <img :src="songinfo.al.picUrl" alt="">
       </div>
     </div>
     <div class="bottom">
@@ -20,7 +21,7 @@
           <i class="fa fa-wheelchair"></i>
         </div>
       </div>
-      <div class="progress">
+      <!-- <div class="progress">
         <div class="currenttime">
           <span>02:32</span>
         </div>
@@ -34,22 +35,22 @@
         <div class="endtime">
           <span>03:46</span>
         </div>
-      </div>
+      </div> -->
       <div class="control">
         <!-- 播放方法 -->
         <div class="playway">
           <i class=" fa fa-exchange fa-2x"></i>
         </div>
         <!-- 上一首 -->
-        <div class="prev">
+        <div class="prev" @click="prev">
           <i class="fa fa-step-backward fa-2x"></i>
         </div>
         <!-- 播放/暂停 -->
-        <div class="playsong">
+        <div class="playsong" @click="play">
           <i class="fa fa-pause fa-2x"></i>
         </div>
         <!-- 下一首 -->
-        <div class="next">
+        <div class="next" @click="next">
           <i class="fa fa-step-forward fa-2x"></i>
         </div>
         <!-- 歌曲列表 -->
@@ -65,6 +66,76 @@ import playheader from '@/components/header/playheader'
 export default {
   components: {
     playheader
+  },
+  data () {
+    return {
+      songinfo: []
+    }
+  },
+  computed: {
+    playing () {
+      // this.index = this.$store.state.currentindex
+      return this.$store.state.playing
+    },
+    cindex () {
+      // this.index = this.$store.state.currentindex
+      return this.$store.state.currentindex
+    },
+    csongid () {
+      // this.index = this.$store.state.currentindex
+      return this.$store.state.songlistid
+    }
+  },
+  created () {
+    let that = this
+    // console.log(that.csongid[val].id)
+    this.axios.get('http://apimusic.zhuchuanyong.com/song/detail', {
+      params: {
+        ids: that.csongid[this.cindex].id
+      }
+    }).then(function (res) {
+      console.log(res)
+      that.songinfo = res.data.songs[0]
+    })
+  },
+  watch: {
+    cindex: function (val, oldval) {
+      // console.log(val)
+      let that = this
+      // console.log(that.csongid[val].id)
+      this.axios.get('http://apimusic.zhuchuanyong.com/song/detail', {
+        params: {
+          ids: that.csongid[val].id
+        }
+      }).then(function (res) {
+        console.log(res)
+        that.songinfo = res.data.songs[0]
+        // that.songinfo = res.data.data[0].url
+      })
+    }
+  },
+  methods: {
+    play () {
+      // console.log(1111)
+      // console.log(this.playing)
+      this.$store.commit('setplaying', !this.playing)
+    },
+    // 上一曲
+    prev () {
+      if (this.cindex < 1) {
+        this.$store.commit('setindex', this.csongid.length - 1)
+      } else {
+        this.$store.commit('setindex', this.cindex - 1)
+      }
+    },
+    // 下一曲
+    next () {
+      if (this.cindex > this.csongid.length - 2) {
+        this.$store.commit('setindex', 0)
+      } else {
+        this.$store.commit('setindex', this.cindex + 1)
+      }
+    }
   }
 }
 </script>
@@ -77,17 +148,29 @@ export default {
   width: 100%;
   z-index: 100;
   height: 100%;
-  background-color: yellow;
+  background-color: #312A21;
   .top {
-    height: 70%;
-    background-color: blue;
+    height: 80%;
+    position: relative;
+    .img {
+      width: 300px;
+      height: 300px;
+      .center;
+    }
+    img {
+      height: 100%;
+      width: 100%;
+      border-radius: 50%;
+    }
+    // background-color: blue;
   }
   .bottom {
-    height: 30%;
-    background-color: green;
+    height: 20%;
+    // background-color: green;
+    color: rgba(248, 248, 255, 0.5);
     .seting {
-      height: 40%;
-      background-color: aqua;
+      height: 50%;
+      // background-color: aqua;
       box-sizing: border-box;
       padding: 0 0.3rem;
       display: flex;
@@ -104,27 +187,27 @@ export default {
         }
       }
     }
-    .progress {
-      height: 20%;
-      background-color: chocolate;
-      display: flex;
-      >div {
-        height: 100%;
-        display: flex;
-        align-items: center;
-      }
-    }
-    .currenttime ,.endtime {
-      width: 15%;
-      background-color: red;
-    }
-    .probar {
-      width: 70%;
-      background-color: darkslategrey;
-    }
+    // .progress {
+    //   height: 20%;
+    //   background-color: chocolate;
+    //   display: flex;
+    //   >div {
+    //     height: 100%;
+    //     display: flex;
+    //     align-items: center;
+    //   }
+    // }
+    // .currenttime ,.endtime {
+    //   width: 15%;
+    //   background-color: red;
+    // }
+    // .probar {
+    //   width: 70%;
+    //   background-color: darkslategrey;
+    // }
     .control {
-      height: 40%;
-      background-color: darkmagenta;
+      height: 50%;
+      // background-color: darkmagenta;
     }
   }
 }

@@ -3,15 +3,15 @@
     <myheader title="我的音乐"></myheader>
     <div class="mylist">
       <mt-cell title="本地音乐" value="248>" class="titlelist">
-        <span>115</span>
+        <span>15</span>
         <i class="fa fa-music" slot="icon"></i>
       </mt-cell>
-      <mt-cell title="本地音乐" value="248>" class="titlelist">
-        <span>115</span>
+      <mt-cell title="最近播放" value="248>" class="titlelist">
+        <span>10</span>
         <i class="fa fa-music" slot="icon"></i>
       </mt-cell>
-      <mt-cell title="本地音乐" value="248>" class="titlelist">
-        <span>115</span>
+      <mt-cell title="下载管理" value="248>" class="titlelist">
+        <span>20</span>
         <i class="fa fa-music" slot="icon"></i>
       </mt-cell>
     </div>
@@ -72,7 +72,7 @@ export default {
   margin-top: 44px;
   .titlelist {
     height: 38px;
-    background-color: green;
+    // background-color: green;
     // margin: 0 14px;
     border-bottom: 1px solid #d9d9d9;
   }
@@ -92,14 +92,16 @@ export default {
     .img {
       width: 50px;
       height: 50px;
-      background-color: aqua;
+      box-sizing: border-box;
+      border: 1px solid #cccccc;
+      // background-color: aqua;
     }
     .content {
       flex: 1;
       flex-grow: 1;
       flex-basis: 0%;
       word-break: break-all;
-      background-color: green;
+      // background-color: green;
       padding-left: 0.1rem;
       box-sizing: border-box;
       border-bottom: 1px solid #d9d9d9;

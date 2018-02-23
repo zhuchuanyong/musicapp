@@ -1,25 +1,25 @@
 <template>
  <div class="footer">
    <div class="findmusic">
-    <router-link to="recommend" active-class="liactive" tag="div" >
+    <router-link to="/recommend" active-class="liactive" tag="div" >
       <i class="fa fa-clone"></i>
       <span>发现音乐</span>
     </router-link>
    </div>
    <div class="mymusic">
-      <router-link to="mymusic" active-class="liactive" tag="div" >
+      <router-link to="/mymusic" active-class="liactive" tag="div" >
         <i class="fa fa-music"></i>
         <span>我的音乐</span>
       </router-link>
    </div>
    <div class="friend">
-     <router-link to="friend" active-class="liactive" tag="div" >
+     <router-link to="/friend" active-class="liactive" tag="div" >
         <i class="fa fa-venus-mars"></i>
         <span>朋友</span>
       </router-link>
    </div>
    <div class="user">
-     <router-link to="user" active-class="liactive" tag="div" >
+     <router-link to="/user" active-class="liactive" tag="div" >
         <i class="fa fa-user"></i>
         <span>我</span>
       </router-link>
@@ -28,10 +28,11 @@
 </template>
 <style lang="less" scoped>
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: green;
+  // background-color: green;
+  background-color:  #c20c0c;
   display: flex;
   height: 52px;
   border-top: 1px solid #cccccc;
@@ -54,6 +55,6 @@
   }
 }
 .liactive {
-  color: #c20c0c;
+  color: rgba(250, 250, 250, 0.9);
 }
 </style>

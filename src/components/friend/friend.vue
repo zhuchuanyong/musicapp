@@ -2,7 +2,9 @@
   <div class="friend">
     <myheader title="朋友"></myheader>
     <div class="content">
-      功能暂未开发
+      <p>需要登录</p>
+      <p>但是登录接口已经凉了</p>
+      <p>溜了 溜了 页面也不写了</p>
     </div>
   </div>
 </template>
